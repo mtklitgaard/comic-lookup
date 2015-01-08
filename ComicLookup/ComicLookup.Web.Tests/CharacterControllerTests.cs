@@ -23,6 +23,32 @@ namespace ComicLookup.Web.Tests
                 var actual = _classUnderTest.Name(name);
                 Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
                 Assert.That(actual.Result, Is.TypeOf(typeof(Character)));
+            } 
+            
+            [Test]
+            public void ReturnsResponseWithNullCharacter_WhenNameIsNull()
+            {
+                var actual = _classUnderTest.Name(null);
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual.Result, Is.Null);
+            } 
+            
+            [Test]
+            public void ReturnsResponseWithNullCharacter_WhenNameIsEmpty()
+            {
+                var name = string.Empty;
+                var actual = _classUnderTest.Name(null);
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual.Result, Is.Null);
+            } 
+            
+            [Test]
+            public void ReturnsResponseWithNullCharacter_WhenNameIsWhiteSpace()
+            {
+                var name = "    ";
+                var actual = _classUnderTest.Name(name);
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual.Result, Is.Null);
             }
         }
     }

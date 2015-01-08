@@ -8,7 +8,10 @@ namespace ComicLookup.Controllers
         public ResponseEnvelope<Character> Name(string name)
         {
             var responseEnvelope = new ResponseEnvelope<Character>();
-            responseEnvelope.Result = new Character();
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                responseEnvelope.Result = new Character();
+            }
             return responseEnvelope;
         }
     }
