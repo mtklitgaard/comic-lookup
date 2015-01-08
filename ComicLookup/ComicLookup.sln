@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicLookup.Services.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicLookup.Web.Tests", "ComicLookup.Web.Tests\ComicLookup.Web.Tests.csproj", "{4842AE91-21DE-49BA-AE6A-8AC4049AD6A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComicLookup.Domain", "ComicLookup.Domain\ComicLookup.Domain.csproj", "{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4842AE91-21DE-49BA-AE6A-8AC4049AD6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4842AE91-21DE-49BA-AE6A-8AC4049AD6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4842AE91-21DE-49BA-AE6A-8AC4049AD6A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
