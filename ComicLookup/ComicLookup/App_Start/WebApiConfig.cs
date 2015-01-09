@@ -19,6 +19,12 @@ namespace ComicLookup
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "Character",
+                routeTemplate: "api/{controller}/{name}"
+                );
+
         }
     }
 }
