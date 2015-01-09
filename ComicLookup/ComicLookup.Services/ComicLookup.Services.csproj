@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Interfaces\IMarvelApiAdapter.cs" />
+    <Compile Include="Adapters\MarvelApiAdapter.cs" />
     <Compile Include="Builders\CharacterBuilder.cs" />
     <Compile Include="Builders\Interfaces\ICharacterBuilder.cs" />
     <Compile Include="Class1.cs" />

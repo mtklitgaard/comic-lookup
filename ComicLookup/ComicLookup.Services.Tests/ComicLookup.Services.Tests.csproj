@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ComicLookup.Domain\ComicLookup.Domain.csproj">
+      <Project>{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}</Project>
+      <Name>ComicLookup.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComicLookup.Services\ComicLookup.Services.csproj">
       <Project>{BECAE54C-3B38-4033-9359-B4ACCD9F1CFF}</Project>
       <Name>ComicLookup.Services</Name>

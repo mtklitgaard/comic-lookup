@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="MarvelApiCharacterResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseEnvelope.cs" />
   </ItemGroup>

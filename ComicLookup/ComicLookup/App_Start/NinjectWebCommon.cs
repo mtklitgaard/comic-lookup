@@ -1,3 +1,5 @@
+using ComicLookup.Services.Adapters;
+using ComicLookup.Services.Adapters.Interfaces;
 using ComicLookup.Services.Builders;
 using ComicLookup.Services.Builders.Interfaces;
 
@@ -65,6 +67,7 @@ namespace ComicLookup.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ICharacterBuilder>().To<CharacterBuilder>();
+            kernel.Bind<IMarvelApiAdapter>().To<MarvelApiAdapter>();
         }        
     }
 }
