@@ -20,6 +20,7 @@ namespace ComicLookup.Web.Tests
             _classUnderTest = new CharacterController(_characterBuilder.Object);
         }
 
+        [TestFixture]
         public class Name : CharacterControllerTests
         {
             [Test]
