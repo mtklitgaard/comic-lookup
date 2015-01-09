@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -59,12 +62,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComicLookup.Domain\ComicLookup.Domain.csproj">
       <Project>{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}</Project>
       <Name>ComicLookup.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComicLookup.Services\ComicLookup.Services.csproj">
+      <Project>{BECAE54C-3B38-4033-9359-B4ACCD9F1CFF}</Project>
+      <Name>ComicLookup.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\ComicLookup\ComicLookup.Web.csproj">
       <Project>{83250D01-27AA-4913-9F01-6BF8C84DF571}</Project>
