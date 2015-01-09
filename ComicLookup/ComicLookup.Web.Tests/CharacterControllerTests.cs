@@ -37,7 +37,7 @@ namespace ComicLookup.Web.Tests
             public void ReturnsResponseWithNullCharacter_WhenNameIsEmpty()
             {
                 var name = string.Empty;
-                var actual = _classUnderTest.Name(null);
+                var actual = _classUnderTest.Name(name);
                 Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
                 Assert.That(actual.Result, Is.Null);
             } 
