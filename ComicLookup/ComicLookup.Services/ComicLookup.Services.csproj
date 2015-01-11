@@ -44,11 +44,10 @@
     <Compile Include="Builders\CharacterBuilder.cs" />
     <Compile Include="Builders\Interfaces\ICharacterBuilder.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Interfaces\ICommonCharacterTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ComicLookup.Domain\ComicLookup.Domain.csproj">
       <Project>{ABBD0DB7-7FC5-4466-9D91-9FF18EB45BB7}</Project>
