@@ -21,7 +21,6 @@ namespace ComicLookup.Services.Tests
             _classUnderTest = new CharacterBuilder(_marvelApiAdapter.Object, _commonCharacterTranslator.Object);
         }
 
-        [TestFixture]
         public class GetCharacterByName : CharacterBuilderTests
         {
             [Test]
