@@ -8,16 +8,16 @@ namespace ComicLookup.Services.Adapters
 {
     public class MarvelApiAdapter : IMarvelApiAdapter
     {
-        private readonly IRestRequestBuilder _restRequestBuilder;
+        private readonly IMarvelRequestBuilder _marvelRequestBuilder;
 
-        public MarvelApiAdapter(IRestRequestBuilder restRequestBuilder)
+        public MarvelApiAdapter(IMarvelRequestBuilder marvelRequestBuilder)
         {
-            _restRequestBuilder = restRequestBuilder;
+            _marvelRequestBuilder = marvelRequestBuilder;
         }
 
         public MarvelApiCharacterResponse GetCharacterByName(string name)
         {
-            var request = _restRequestBuilder.Build("/v1/public/characters", Method.GET);
+            var request = _marvelRequestBuilder.Build("/v1/public/characters", Method.GET);
             return null;
         }
     }

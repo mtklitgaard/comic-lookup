@@ -48,6 +48,7 @@
     <Compile Include="Builders\Interfaces\ICharacterBuilder.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Interfaces\ICommonCharacterTranslator.cs" />
+    <Compile Include="Interfaces\IMarvelRequestBuilder.cs" />
     <Compile Include="Interfaces\IRestRequestBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

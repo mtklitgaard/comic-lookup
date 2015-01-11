@@ -13,34 +13,33 @@ namespace ComicLookup.Services.Tests
 {
     public class MarvelApiAdapterTests
     {
-        private Mock<IRestRequestBuilder> _restRequestBuilder;
+        private Mock<IMarvelRequestBuilder> _marvelRequestBuilder;
         private MarvelApiAdapter _classUnderTest;
 
         [SetUp]
         public void SetUp()
         {
-            _restRequestBuilder = new Mock<IRestRequestBuilder>();
-            _classUnderTest = new MarvelApiAdapter(_restRequestBuilder.Object);
+            _marvelRequestBuilder = new Mock<IMarvelRequestBuilder>();
+            _classUnderTest = new MarvelApiAdapter(_marvelRequestBuilder.Object);
         }
-        
+
         public class GetCharacterByName : MarvelApiAdapterTests
         {
             [Test]
-            public void CallsRequestBuilder_WithCharacterUrlAndGetMethod()
+            public void CallsMarvelRequestBuilder_WithCharacterUrlAndGetMethod()
             {
                 const string characterUrl = "/v1/public/characters";
                 const string characterName = "Hulk";
 
-                _restRequestBuilder
+                _marvelRequestBuilder
                     .Setup(x => x.Build(characterUrl, Method.GET))
                     .Returns(new RestRequest());
 
                 _classUnderTest.GetCharacterByName(characterName);
 
-                _restRequestBuilder
+                _marvelRequestBuilder
                     .Verify(x => x.Build(characterUrl, Method.GET));
             }
-
         }
     }
 }
