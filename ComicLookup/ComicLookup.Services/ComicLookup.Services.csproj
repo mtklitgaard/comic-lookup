@@ -56,6 +56,7 @@
     <Compile Include="Interfaces\IMarvelRequestBuilder.cs" />
     <Compile Include="Interfaces\IRestRequestBuilder.cs" />
     <Compile Include="JsonTranslator.cs" />
+    <Compile Include="MarvelKeyRepository.cs" />
     <Compile Include="MarvelRequestBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
