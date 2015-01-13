@@ -4,6 +4,9 @@ namespace ComicLookup.Services.Interfaces
 {
     public interface IMarvelRequestBuilder
     {
-        RestRequest Build(string characterUrl, Method method);
+        RestRequest Build(string characterUrl,
+            Method method,
+            string searchName,
+            string searchTerm);
     }
 }

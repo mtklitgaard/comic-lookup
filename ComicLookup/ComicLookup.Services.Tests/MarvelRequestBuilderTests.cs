@@ -24,7 +24,7 @@ namespace ComicLookup.Services.Tests
             [TestCase(Method.POST)]
             public void ReturnsRequest_WithCorrectMethod(Method expected)
             {
-                var actual = _classUnderTest.Build("test", expected);
+                var actual = _classUnderTest.Build("test", expected, "name", "hulk");
                 Assert.That(actual.Method, Is.EqualTo(expected));
             }
 
@@ -32,10 +32,10 @@ namespace ComicLookup.Services.Tests
             public void ReturnsRequest_WithCorrectResourceUrl()
             {
                 var expected = "test";
-                var actual = _classUnderTest.Build(expected, Method.GET);
+                var actual = _classUnderTest.Build(expected, Method.GET, "name", "hulk");
                 Assert.That(actual.Resource, Is.EqualTo(expected));
-            } 
-            
+            }
+
             [Test]
             public void CallsMarvelKeyRepositoryForApiKey_AndAddsApiKeyToQueryString()
             {
@@ -50,14 +50,16 @@ namespace ComicLookup.Services.Tests
                     .Setup(x => x.ApiKey)
                     .Returns(apiKey);
 
-                var actual = _classUnderTest.Build("url", Method.GET);
-                
+                var actual = _classUnderTest.Build("url", Method.GET, "name", "hulk");
+
                 _marvelKeyRepository
                     .Verify(x => x.ApiKey);
 
-                Assert.That(actual.Parameters.Any(x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
+                Assert.That(
+                    actual.Parameters.Any(
+                        x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
             }
-            
+
             [Test]
             public void CallsMarvelKeyRepositoryForTimeStamp_AndAddsTimeStampToQueryString()
             {
@@ -72,14 +74,16 @@ namespace ComicLookup.Services.Tests
                     .Setup(x => x.TimeStamp)
                     .Returns(timeStamp);
 
-                var actual = _classUnderTest.Build("url", Method.GET);
-                
+                var actual = _classUnderTest.Build("url", Method.GET, "name", "hulk");
+
                 _marvelKeyRepository
                     .Verify(x => x.TimeStamp);
 
-                Assert.That(actual.Parameters.Any(x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
+                Assert.That(
+                    actual.Parameters.Any(
+                        x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
             }
-            
+
             [Test]
             public void CallsMarvelKeyRepositoryForHashKey_AndAddsHashKeyToQueryString()
             {
@@ -94,12 +98,32 @@ namespace ComicLookup.Services.Tests
                     .Setup(x => x.Hash())
                     .Returns(hash);
 
-                var actual = _classUnderTest.Build("url", Method.GET);
-                
+                var actual = _classUnderTest.Build("url", Method.GET, "name", "hulk");
+
                 _marvelKeyRepository
                     .Verify(x => x.Hash());
 
-                Assert.That(actual.Parameters.Any(x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
+                Assert.That(
+                    actual.Parameters.Any(
+                        x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
+            }  
+            
+            [Test]
+            public void AddsSearchNameAndSearchTermToQueryString()
+            {
+                var searchTerm = "hullk";
+                var searchName = "name";
+
+                var expected = new Parameter();
+                expected.Name = searchName;
+                expected.Type = ParameterType.QueryString;
+                expected.Value = searchTerm;
+                
+                var actual = _classUnderTest.Build("url", Method.GET, searchName, searchTerm);
+                
+                Assert.That(
+                    actual.Parameters.Any(
+                        x => x.Name == expected.Name && x.Type == expected.Type && x.Value == expected.Value), Is.True);
             }
         }
     }

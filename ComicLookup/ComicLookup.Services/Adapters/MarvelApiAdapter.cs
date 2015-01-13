@@ -12,18 +12,20 @@ namespace ComicLookup.Services.Adapters
         private readonly IMarvelRequestBuilder _marvelRequestBuilder;
         private readonly IRestClient _restClient;
         private readonly IJsonTranslator _jsonTranslator;
+        private readonly IMarvelKeyRepository _marvelKeyRepository;
 
-        public MarvelApiAdapter(IMarvelRequestBuilder marvelRequestBuilder, IRestClient restClient, IJsonTranslator jsonTranslator)
+        public MarvelApiAdapter(IMarvelRequestBuilder marvelRequestBuilder, IRestClient restClient, IJsonTranslator jsonTranslator, IMarvelKeyRepository marvelKeyRepository)
         {
             _marvelRequestBuilder = marvelRequestBuilder;
             _restClient = restClient;
             _jsonTranslator = jsonTranslator;
+            _marvelKeyRepository = marvelKeyRepository;
         }
 
         public MarvelApiCharacterResponse GetCharacterByName(string name)
         {
-            var request = _marvelRequestBuilder.Build("/v1/public/characters", Method.GET);
-            //add base url
+            var request = _marvelRequestBuilder.Build("/v1/public/characters", Method.GET, "name", name);
+            _restClient.BaseUrl = _marvelKeyRepository.MarvelBaseUrl;
             var response = _restClient.Execute(request);
             var marvelCharacterResponse = _jsonTranslator.Deserialize<MarvelApiCharacterResponse>(response.Content);
             return marvelCharacterResponse;

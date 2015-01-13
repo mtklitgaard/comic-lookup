@@ -18,6 +18,7 @@ namespace ComicLookup.Services.Tests
         private MarvelApiAdapter _classUnderTest;
         private Mock<IRestClient> _restClient;
         private Mock<IJsonTranslator> _jsonTranslator;
+        private Mock<IMarvelKeyRepository> _marvelKeyRepository;
 
         [SetUp]
         public void SetUp()
@@ -25,7 +26,8 @@ namespace ComicLookup.Services.Tests
             _marvelRequestBuilder = new Mock<IMarvelRequestBuilder>();
             _restClient = new Mock<IRestClient>();
             _jsonTranslator = new Mock<IJsonTranslator>();
-            _classUnderTest = new MarvelApiAdapter(_marvelRequestBuilder.Object, _restClient.Object, _jsonTranslator.Object);
+            _marvelKeyRepository = new Mock<IMarvelKeyRepository>();
+            _classUnderTest = new MarvelApiAdapter(_marvelRequestBuilder.Object, _restClient.Object, _jsonTranslator.Object, _marvelKeyRepository.Object);
         }
 
         public class GetCharacterByName : MarvelApiAdapterTests
@@ -39,7 +41,7 @@ namespace ComicLookup.Services.Tests
                 var restRequest = new RestRequest();
 
                 _marvelRequestBuilder
-                    .Setup(x => x.Build(characterUrl, Method.GET))
+                    .Setup(x => x.Build(characterUrl, Method.GET, "name", characterName))
                     .Returns(restRequest);
 
                 _restClient
@@ -49,7 +51,7 @@ namespace ComicLookup.Services.Tests
                 _classUnderTest.GetCharacterByName(characterName);
 
                 _marvelRequestBuilder
-                    .Verify(x => x.Build(characterUrl, Method.GET));
+                    .Verify(x => x.Build(characterUrl, Method.GET, "name", characterName));
 
                 _restClient
                     .Verify(x => x.Execute(restRequest));
@@ -66,7 +68,7 @@ namespace ComicLookup.Services.Tests
                 var expected = new MarvelApiCharacterResponse();
 
                 _marvelRequestBuilder
-                    .Setup(x => x.Build(characterUrl, Method.GET))
+                    .Setup(x => x.Build(characterUrl, Method.GET, "name", characterName))
                     .Returns(restRequest);
 
                 _restClient
@@ -80,7 +82,7 @@ namespace ComicLookup.Services.Tests
                 var actual = _classUnderTest.GetCharacterByName(characterName);
 
                 _marvelRequestBuilder
-                    .Verify(x => x.Build(characterUrl, Method.GET));
+                    .Verify(x => x.Build(characterUrl, Method.GET, "name", characterName));
 
                 _restClient
                     .Verify(x => x.Execute(restRequest));
@@ -90,6 +92,42 @@ namespace ComicLookup.Services.Tests
 
                 Assert.That(actual, Is.SameAs(expected));
             }
+
+            [Test]
+            public void CallsMarvelKeyRepository_AndSetsBaseUrlOnRestClient()
+            {
+                const string characterUrl = "/v1/public/characters";
+                const string characterName = "Hulk";
+                var expected = new Uri("http://here");
+                var restRequest = new RestRequest();
+                var restResponse = new RestResponse();
+                var marvelApiCharacterResponse = new MarvelApiCharacterResponse();
+
+                _marvelKeyRepository
+                    .Setup(x => x.MarvelBaseUrl)
+                    .Returns(expected);
+
+                _marvelRequestBuilder
+                  .Setup(x => x.Build(characterUrl, Method.GET, "name", characterName))
+                  .Returns(restRequest);
+
+               _restClient
+                    .Setup(x => x.Execute(restRequest))
+                    .Returns(restResponse);
+
+                _jsonTranslator
+                    .Setup(x => x.Deserialize<MarvelApiCharacterResponse>(restResponse.Content))
+                    .Returns(marvelApiCharacterResponse);
+
+                _classUnderTest.GetCharacterByName(characterName);
+
+                _marvelKeyRepository
+                    .Verify(x => x.MarvelBaseUrl);
+
+                _restClient
+                    .VerifySet(x => x.BaseUrl = expected);
+            }
+
         }
     }
 }
