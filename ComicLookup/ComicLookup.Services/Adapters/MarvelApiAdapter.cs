@@ -23,6 +23,7 @@ namespace ComicLookup.Services.Adapters
         public MarvelApiCharacterResponse GetCharacterByName(string name)
         {
             var request = _marvelRequestBuilder.Build("/v1/public/characters", Method.GET);
+            //add base url
             var response = _restClient.Execute(request);
             var marvelCharacterResponse = _jsonTranslator.Deserialize<MarvelApiCharacterResponse>(response.Content);
             return marvelCharacterResponse;
