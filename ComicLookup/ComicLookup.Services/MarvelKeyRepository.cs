@@ -9,7 +9,7 @@ namespace ComicLookup.Services
         public string TimeStamp { get; private set; }
         public Uri MarvelBaseUrl { get; private set; }
         public string Hash()
-        {
+        { 
             //Input secret key building here
         }
     }
