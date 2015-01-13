@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -52,6 +55,7 @@
     <Compile Include="Interfaces\IMarvelKeyRepository.cs" />
     <Compile Include="Interfaces\IMarvelRequestBuilder.cs" />
     <Compile Include="Interfaces\IRestRequestBuilder.cs" />
+    <Compile Include="JsonTranslator.cs" />
     <Compile Include="MarvelRequestBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
