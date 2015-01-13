@@ -6,7 +6,7 @@ namespace ComicLookup.Services.Interfaces
     {
         string ApiKey { get; }
         string TimeStamp { get; }
-        Uri MarvelBaseUrl { get; set; }
+        Uri MarvelBaseUrl { get; }
         string Hash();
     }
 }
