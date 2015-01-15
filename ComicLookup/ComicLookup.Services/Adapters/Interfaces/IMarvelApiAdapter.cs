@@ -1,4 +1,5 @@
 ﻿using ComicLookup.Domain;
+using ComicLookup.Domain.Marvel;
 
 namespace ComicLookup.Services.Adapters.Interfaces
 {

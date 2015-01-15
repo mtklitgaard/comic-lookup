@@ -1,5 +1,6 @@
 ﻿using System;
 using ComicLookup.Domain;
+using ComicLookup.Domain.Marvel;
 using ComicLookup.Services.Adapters;
 using ComicLookup.Services.Interfaces;
 using Moq;

@@ -1,6 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using ComicLookup.Domain;
+using ComicLookup.Domain.Marvel;
 using ComicLookup.Services.Adapters.Interfaces;
 using ComicLookup.Services.Interfaces;
 using RestSharp;

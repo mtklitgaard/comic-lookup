@@ -30,8 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +46,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
-    <Compile Include="MarvelApiCharacterResponse.cs" />
+    <Compile Include="Marvel\ComicItem.cs" />
+    <Compile Include="Marvel\CommonMarvelElements.cs" />
+    <Compile Include="Marvel\MarvelApiCharacterResponse.cs" />
+    <Compile Include="Marvel\MarvelData.cs" />
+    <Compile Include="Marvel\MarvelUrl.cs" />
+    <Compile Include="Marvel\Result.cs" />
+    <Compile Include="Marvel\Story.cs" />
+    <Compile Include="Marvel\StoryItem.cs" />
+    <Compile Include="Marvel\ThumbNail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseEnvelope.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

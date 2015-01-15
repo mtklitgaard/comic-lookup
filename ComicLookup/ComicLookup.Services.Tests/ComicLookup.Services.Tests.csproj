@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterBuilderTests.cs" />
+    <Compile Include="CommonCharacterTranslatorTests.cs" />
     <Compile Include="MarvelKeyRepositoryTests.cs" />
     <Compile Include="MarvelRequestBuilderTests.cs" />
     <Compile Include="MarvelApiAdapterTests.cs" />
