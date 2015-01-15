@@ -24,17 +24,17 @@ namespace ComicLookup.Domain.Marvel
         public string ResourceURI { get; set; }
 
         [JsonProperty(PropertyName = "comics")]
-        public List<CommonMarvelElements> Comics { get; set; }
+        public CommonMarvelElements Comics { get; set; }
 
         [JsonProperty(PropertyName = "series")]
-        public List<CommonMarvelElements> ComicSeries { get; set; }
+        public CommonMarvelElements ComicSeries { get; set; }
 
         [JsonProperty(PropertyName = "stories")]
-        public List<Story> Stories { get; set; }
+        public Story Stories { get; set; }
 
         [JsonProperty(PropertyName = "events")]
-        public List<CommonMarvelElements> Events { get; set; }
-        
+        public CommonMarvelElements Events { get; set; }
+
         [JsonProperty(PropertyName = "urls")]
         public List<MarvelUrl> MarvelUrls { get; set; }
     }

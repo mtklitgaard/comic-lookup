@@ -18,6 +18,7 @@ namespace ComicLookup.Controllers
         public ResponseEnvelope<MarvelApiCharacterResponse> Name(string name)
         {
             var responseEnvelope = new ResponseEnvelope<MarvelApiCharacterResponse>();
+            
             if (!string.IsNullOrWhiteSpace(name))
             {
                 responseEnvelope.Result = _characterBuilder.GetCharacterByName(name);

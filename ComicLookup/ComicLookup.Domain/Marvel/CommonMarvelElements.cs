@@ -6,15 +6,15 @@ namespace ComicLookup.Domain.Marvel
     public class CommonMarvelElements
     {
         [JsonProperty(PropertyName = "available")]
-        string Available { get; set; }
+        public string Available { get; set; }
 
         [JsonProperty(PropertyName = "collectionURI")]
-        string CollectionURI { get; set; }
+        public string CollectionURI { get; set; }
 
         [JsonProperty(PropertyName = "items")]
-        List<ComicItem> ComicItems { get; set; }
+        public List<ComicItem> StoryItems { get; set; }
 
         [JsonProperty(PropertyName = "returned")]
-        string Returned { get; set; }
+        public string Returned { get; set; }
     }
 }

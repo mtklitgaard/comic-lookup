@@ -51,7 +51,9 @@
     <Compile Include="Builders\Interfaces\ICharacterBuilder.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CommonCharacterTranslator.cs" />
+    <Compile Include="DateTimeWrapper.cs" />
     <Compile Include="Interfaces\ICommonCharacterTranslator.cs" />
+    <Compile Include="Interfaces\IDateTimeWrapper.cs" />
     <Compile Include="Interfaces\IJsonTranslator.cs" />
     <Compile Include="Interfaces\IMarvelKeyRepository.cs" />
     <Compile Include="Interfaces\IMarvelRequestBuilder.cs" />

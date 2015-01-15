@@ -1,5 +1,4 @@
-﻿using ComicLookup.Domain;
-using ComicLookup.Domain.Marvel;
+﻿using ComicLookup.Domain.Marvel;
 using ComicLookup.Services.Adapters.Interfaces;
 using ComicLookup.Services.Builders;
 using ComicLookup.Services.Interfaces;
@@ -19,7 +18,7 @@ namespace ComicLookup.Services.Tests
         {
             _marvelApiAdapter = new Mock<IMarvelApiAdapter>();
             _commonCharacterTranslator = new Mock<ICommonCharacterTranslator>();
-            _classUnderTest = new CharacterBuilder(_marvelApiAdapter.Object, _commonCharacterTranslator.Object);
+            _classUnderTest = new CharacterBuilder(_marvelApiAdapter.Object);
         }
 
         public class GetCharacterByName : CharacterBuilderTests

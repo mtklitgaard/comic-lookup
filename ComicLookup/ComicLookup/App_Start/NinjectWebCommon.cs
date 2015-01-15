@@ -1,7 +1,10 @@
+using ComicLookup.Services;
 using ComicLookup.Services.Adapters;
 using ComicLookup.Services.Adapters.Interfaces;
 using ComicLookup.Services.Builders;
 using ComicLookup.Services.Builders.Interfaces;
+using ComicLookup.Services.Interfaces;
+using RestSharp;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ComicLookup.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ComicLookup.App_Start.NinjectWebCommon), "Stop")]
@@ -68,6 +71,11 @@ namespace ComicLookup.App_Start
         {
             kernel.Bind<ICharacterBuilder>().To<CharacterBuilder>();
             kernel.Bind<IMarvelApiAdapter>().To<MarvelApiAdapter>();
+            kernel.Bind<IMarvelRequestBuilder>().To<MarvelRequestBuilder>();
+            kernel.Bind<IRestClient>().To<RestClient>();
+            kernel.Bind<IJsonTranslator>().To<JsonTranslator>();
+            kernel.Bind<IMarvelKeyRepository>().To<MarvelKeyRepository>();
+            kernel.Bind<IDateTimeWrapper>().To<DateTimeWrapper>();
         }        
     }
 }

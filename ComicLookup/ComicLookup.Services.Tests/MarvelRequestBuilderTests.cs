@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ComicLookup.Services.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -10,12 +11,14 @@ namespace ComicLookup.Services.Tests
     {
         private MarvelRequestBuilder _classUnderTest;
         private Mock<IMarvelKeyRepository> _marvelKeyRepository;
+        private Mock<IDateTimeWrapper> _dateTimeWrapper;
 
         [SetUp]
         public void SetUp()
         {
             _marvelKeyRepository = new Mock<IMarvelKeyRepository>();
-            _classUnderTest = new MarvelRequestBuilder(_marvelKeyRepository.Object);
+            _dateTimeWrapper = new Mock<IDateTimeWrapper>();
+            _classUnderTest = new MarvelRequestBuilder(_marvelKeyRepository.Object, _dateTimeWrapper.Object);
         }
 
         public class Build : MarvelRequestBuilderTests
@@ -61,7 +64,7 @@ namespace ComicLookup.Services.Tests
             }
 
             [Test]
-            public void CallsMarvelKeyRepositoryForTimeStamp_AndAddsTimeStampToQueryString()
+            public void CallsDateTimeWrapperToGetTimeStamp_AndAddsTimeStampToQueryString()
             {
                 var timeStamp = "test";
 
@@ -70,14 +73,14 @@ namespace ComicLookup.Services.Tests
                 expected.Type = ParameterType.QueryString;
                 expected.Value = timeStamp;
 
-                _marvelKeyRepository
-                    .Setup(x => x.TimeStamp)
+                _dateTimeWrapper
+                    .Setup(x => x.GetDateString())
                     .Returns(timeStamp);
 
                 var actual = _classUnderTest.Build("url", Method.GET, "name", "hulk");
 
-                _marvelKeyRepository
-                    .Verify(x => x.TimeStamp);
+                _dateTimeWrapper
+                    .Verify(x => x.GetDateString());
 
                 Assert.That(
                     actual.Parameters.Any(
@@ -88,20 +91,25 @@ namespace ComicLookup.Services.Tests
             public void CallsMarvelKeyRepositoryForHashKey_AndAddsHashKeyToQueryString()
             {
                 var hash = "test";
+                var timeStamp = "test";
 
                 var expected = new Parameter();
                 expected.Name = "hash";
                 expected.Type = ParameterType.QueryString;
                 expected.Value = hash;
 
+                _dateTimeWrapper
+                   .Setup(x => x.GetDateString())
+                   .Returns(timeStamp);
+
                 _marvelKeyRepository
-                    .Setup(x => x.Hash())
+                    .Setup(x => x.Hash(timeStamp))
                     .Returns(hash);
 
                 var actual = _classUnderTest.Build("url", Method.GET, "name", "hulk");
 
                 _marvelKeyRepository
-                    .Verify(x => x.Hash());
+                    .Verify(x => x.Hash(timeStamp));
 
                 Assert.That(
                     actual.Parameters.Any(

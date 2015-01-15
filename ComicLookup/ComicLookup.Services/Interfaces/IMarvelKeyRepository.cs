@@ -5,8 +5,7 @@ namespace ComicLookup.Services.Interfaces
     public interface IMarvelKeyRepository
     {
         string ApiKey { get; }
-        string TimeStamp { get; }
         Uri MarvelBaseUrl { get; }
-        string Hash();
+        string Hash(string timeStamp);
     }
 }
