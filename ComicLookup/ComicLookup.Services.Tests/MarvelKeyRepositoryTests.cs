@@ -19,7 +19,7 @@ namespace ComicLookup.Services.Tests
             [Test]
             public void ReturnsCorrectHash()
             {
-                var expected = "EXPECTEDHASH";
+                var expected = "01bb31985695fad8fd0d8ce20c9e8d47";
 
                 var actual = _classUnderTest.Hash();
                 Assert.That(actual, Is.EqualTo(expected));

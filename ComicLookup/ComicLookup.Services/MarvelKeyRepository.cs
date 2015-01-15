@@ -7,15 +7,16 @@ namespace ComicLookup.Services
 {
     public class MarvelKeyRepository : IMarvelKeyRepository
     {
-        const string PRIVATE_KEY = "PrivateKey"; 
+        private readonly DateTime _dateTime;
+        const string PRIVATE_KEY = "privatekey"; 
 
-        public string ApiKey { get { return "APIKEY"; } }
+        public string ApiKey { get { return "apikey"; } }
         public string TimeStamp { get; private set; }
         public Uri MarvelBaseUrl { get { return new Uri("https://gateway.marvel.com/"); } }
 
-        public MarvelKeyRepository()
+        public MarvelKeyRepository(String dateTime)
         {
-            TimeStamp = DateTime.Now.ToString();
+            TimeStamp = dateTime;
         }
 
         public string Hash()
