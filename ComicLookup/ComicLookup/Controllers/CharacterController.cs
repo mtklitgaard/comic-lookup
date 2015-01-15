@@ -1,5 +1,6 @@
 using System.Web.Http;
 using ComicLookup.Domain;
+using ComicLookup.Domain.Marvel;
 using ComicLookup.Services.Builders.Interfaces;
 
 namespace ComicLookup.Controllers
@@ -14,9 +15,9 @@ namespace ComicLookup.Controllers
         }
 
         [HttpGet]
-        public ResponseEnvelope<Character> Name(string name)
+        public ResponseEnvelope<MarvelApiCharacterResponse> Name(string name)
         {
-            var responseEnvelope = new ResponseEnvelope<Character>();
+            var responseEnvelope = new ResponseEnvelope<MarvelApiCharacterResponse>();
             if (!string.IsNullOrWhiteSpace(name))
             {
                 responseEnvelope.Result = _characterBuilder.GetCharacterByName(name);

@@ -1,5 +1,6 @@
 ﻿using ComicLookup.Controllers;
 using ComicLookup.Domain;
+using ComicLookup.Domain.Marvel;
 using ComicLookup.Services.Builders.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -28,14 +29,14 @@ namespace ComicLookup.Web.Tests
             {
                 var name = "Hulk";
                 var actual = _classUnderTest.Name(name);
-                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<MarvelApiCharacterResponse>)));
             } 
             
             [Test]
             public void ReturnsResponseWithNullCharacter_WhenNameIsNull()
             {
                 var actual = _classUnderTest.Name(null);
-                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<MarvelApiCharacterResponse>)));
                 Assert.That(actual.Result, Is.Null);
             } 
             
@@ -44,7 +45,7 @@ namespace ComicLookup.Web.Tests
             {
                 var name = string.Empty;
                 var actual = _classUnderTest.Name(name);
-                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<MarvelApiCharacterResponse>)));
                 Assert.That(actual.Result, Is.Null);
             } 
             
@@ -53,7 +54,7 @@ namespace ComicLookup.Web.Tests
             {
                 var name = "    ";
                 var actual = _classUnderTest.Name(name);
-                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<Character>)));
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<MarvelApiCharacterResponse>)));
                 Assert.That(actual.Result, Is.Null);
             }
 
@@ -61,7 +62,7 @@ namespace ComicLookup.Web.Tests
             public void CallsCharacterBuilderGetCharacterByNameAndReturnsCharacter_WhenCharacterNameIsNotNullOrEmpty()
             {
                 var name = "Hulk";
-                var expected = new Character();
+                var expected = new MarvelApiCharacterResponse();
                 _characterBuilder
                     .Setup(x => x.GetCharacterByName(name))
                     .Returns(expected);

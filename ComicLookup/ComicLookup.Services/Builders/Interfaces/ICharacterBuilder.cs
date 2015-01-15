@@ -1,9 +1,9 @@
-﻿using ComicLookup.Domain;
+﻿using ComicLookup.Domain.Marvel;
 
 namespace ComicLookup.Services.Builders.Interfaces
 {
     public interface ICharacterBuilder
     {
-        Character GetCharacterByName(string characterName);
+        MarvelApiCharacterResponse GetCharacterByName(string characterName);
     }
 }

@@ -28,30 +28,15 @@ namespace ComicLookup.Services.Tests
             public void CallsMarvelRequestBuilderGetCharactersByName()
             {
                 var name = "Hulk";
+                var expected = new MarvelApiCharacterResponse();
                 _marvelApiAdapter
                     .Setup(x => x.GetCharacterByName(name))
-                    .Returns(new MarvelApiCharacterResponse());
-
-                _classUnderTest.GetCharacterByName(name);
-
-                _marvelApiAdapter
-                    .Verify(x => x.GetCharacterByName(name));
-            }
-
-            [Test]
-            public void CallsCommonCharacterTranslatorTranslate_AndReturnsCharacterFromCommonCharacterTranslator()
-            {
-                var name = "Hulk";
-                var expected = new Character();
-
-                _commonCharacterTranslator
-                    .Setup(x => x.Translate(It.IsAny<MarvelApiCharacterResponse>()))
                     .Returns(expected);
 
                 var actual = _classUnderTest.GetCharacterByName(name);
 
-                _commonCharacterTranslator
-                    .Verify(x => x.Translate(It.IsAny<MarvelApiCharacterResponse>()));
+                _marvelApiAdapter
+                    .Verify(x => x.GetCharacterByName(name));
 
                 Assert.That(actual, Is.SameAs(expected));
             }
