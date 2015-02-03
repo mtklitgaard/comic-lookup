@@ -49,6 +49,7 @@
     <Compile Include="Adapters\MarvelApiAdapter.cs" />
     <Compile Include="Builders\CharacterBuilder.cs" />
     <Compile Include="Builders\Interfaces\ICharacterBuilder.cs" />
+    <Compile Include="Builders\Interfaces\ICharacterComicsBuilder.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CommonCharacterTranslator.cs" />
     <Compile Include="DateTimeWrapper.cs" />

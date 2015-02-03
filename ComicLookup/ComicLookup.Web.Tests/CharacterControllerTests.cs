@@ -11,6 +11,7 @@ namespace ComicLookup.Web.Tests
     {
         private CharacterController _classUnderTest;
         private Mock<ICharacterBuilder> _characterBuilder;
+        private Mock<ICharacterComicsBuilder> _characterComicsBuilder;
 
         [SetUp]
         public void Setup()
@@ -18,7 +19,8 @@ namespace ComicLookup.Web.Tests
             var mockRepository = new MockRepository(MockBehavior.Loose);
 
             _characterBuilder = mockRepository.Create<ICharacterBuilder>();
-            _classUnderTest = new CharacterController(_characterBuilder.Object);
+            _characterComicsBuilder = mockRepository.Create<ICharacterComicsBuilder>();
+            _classUnderTest = new CharacterController(_characterBuilder.Object, _characterComicsBuilder.Object);
         }
 
         [TestFixture]
@@ -75,6 +77,36 @@ namespace ComicLookup.Web.Tests
                 Assert.That(actual.Result, Is.SameAs(expected));
             }
 
+        }
+
+        [TestFixture]
+        public class Comics : CharacterControllerTests
+        {
+            [Test]
+            public void ReturnsMarvelApiCharacterComicsResponse()
+            {
+                var characterId = 123;
+                var actual = _classUnderTest.Comics(characterId);
+                Assert.That(actual, Is.TypeOf(typeof(ResponseEnvelope<MarvelApiCharacterComicsResponse>)));
+            }
+            
+            [Test]
+            public void CallsCharacterComicsBuilderAndReturnsMarvelApiCharacterComicsResponse()
+            {
+                var characterId = 123;
+                var expected = new MarvelApiCharacterComicsResponse();
+
+                _characterComicsBuilder
+                    .Setup(x => x.GetComics(characterId))
+                    .Returns(expected);
+
+                var actual = _classUnderTest.Comics(characterId);
+
+                _characterComicsBuilder
+                    .Verify(x => x.GetComics(characterId));
+
+                Assert.That(actual.Result, Is.SameAs(expected));
+            }
         }
     }
 }

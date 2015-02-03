@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Character.cs" />
+    <Compile Include="MarvelApiCharacterComicsResponse.cs" />
     <Compile Include="Marvel\ComicItem.cs" />
     <Compile Include="Marvel\CommonMarvelElements.cs" />
     <Compile Include="Marvel\MarvelApiCharacterResponse.cs" />

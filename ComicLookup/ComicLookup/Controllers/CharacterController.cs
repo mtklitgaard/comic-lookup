@@ -9,10 +9,12 @@ namespace ComicLookup.Controllers
     public class CharacterController : ApiController
     {
         private readonly ICharacterBuilder _characterBuilder;
+        private readonly ICharacterComicsBuilder _characterComicsBuilder;
 
-        public CharacterController(ICharacterBuilder characterBuilder)
+        public CharacterController(ICharacterBuilder characterBuilder, ICharacterComicsBuilder characterComicsBuilder)
         {
             _characterBuilder = characterBuilder;
+            _characterComicsBuilder = characterComicsBuilder;
         }
 
         [HttpGet]
@@ -26,6 +28,16 @@ namespace ComicLookup.Controllers
                 responseEnvelope.Result = _characterBuilder.GetCharacterByName(name);
             }
             return responseEnvelope;
+        }
+
+        public ResponseEnvelope<MarvelApiCharacterComicsResponse> Comics(int characterId)
+        {
+            var responseEnvelope = new ResponseEnvelope<MarvelApiCharacterComicsResponse>();
+            var response = new ResponseEnvelope<MarvelApiCharacterComicsResponse>
+            {
+                Result = _characterComicsBuilder.GetComics(characterId)
+            };
+            return response;
         }
     }
 }
