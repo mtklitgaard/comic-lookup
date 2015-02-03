@@ -32,7 +32,6 @@ namespace ComicLookup.Controllers
 
         public ResponseEnvelope<MarvelApiCharacterComicsResponse> Comics(int characterId)
         {
-            var responseEnvelope = new ResponseEnvelope<MarvelApiCharacterComicsResponse>();
             var response = new ResponseEnvelope<MarvelApiCharacterComicsResponse>
             {
                 Result = _characterComicsBuilder.GetComics(characterId)
